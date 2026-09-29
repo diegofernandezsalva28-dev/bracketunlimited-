@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bracket Unlimited | Free Nested Clue Puzzles</title>
 <meta name="description" content="Free nested clue puzzles. Play as many as you want, try the daily one, or build your own and send someone the link.">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#fdfeff;--card:#ffffff;--inset:#edf3fc;--border:#d2ddef;--fg:#0d1f3c;--muted:#506180;--accent:#1553d6;--on:#fff;--good:#0f7a57;--bad:#c22f45}
 :root[data-theme="dark"]{--bg:#0a1730;--card:#0f2140;--inset:#0e2038;--border:#233f6b;--fg:#e8f0ff;--muted:#93a9cd;--accent:#6aa5ff;--on:#06122a;--good:#4fd6a4;--bad:#ff7d8f}
@@ -203,21 +203,21 @@ footer{border-top:1px solid var(--border);margin-top:70px}
 .wrow[data-shake="1"]{animation:wShake .5s}
 .wrow[data-win="1"] .wtile{animation:wBounce .9s}
 .wrow[data-win="1"] .wtile:nth-child(2){animation-delay:.08s}.wrow[data-win="1"] .wtile:nth-child(3){animation-delay:.16s}.wrow[data-win="1"] .wtile:nth-child(4){animation-delay:.24s}.wrow[data-win="1"] .wtile:nth-child(5){animation-delay:.32s}
-.wtile{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:26px;text-transform:uppercase;border-radius:6px;border:2px solid var(--border);color:var(--fg);background:var(--card);user-select:none;transition:border-color .1s}
+.wtile{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;font-weight:700;font-size:27px;letter-spacing:.01em;text-transform:uppercase;border-radius:6px;border:2px solid var(--border);color:var(--fg);background:var(--card);user-select:none;transition:border-color .1s}
 .wtile[data-has="1"]{border-color:var(--muted)}
 .wtile[data-pop="1"]{animation:wPop .1s ease}
-.wtile[data-flip="1"]{animation:wFlip .3s ease}
-.wtile[data-state="correct"]{background:var(--wcorrect);border-color:var(--wcorrect);color:#fff}
-.wtile[data-state="present"]{background:var(--wpresent);border-color:var(--wpresent);color:#fff}
-.wtile[data-state="absent"]{background:var(--wabsent);border-color:var(--wabsent);color:#fff}
+.wtile[data-flip="1"]{animation:wFlip .65s ease-in-out both}
+.wtile[data-state="correct"]{--tbg:var(--wcorrect);background:var(--wcorrect);border-color:var(--wcorrect);color:#fff}
+.wtile[data-state="present"]{--tbg:var(--wpresent);background:var(--wpresent);border-color:var(--wpresent);color:#fff}
+.wtile[data-state="absent"]{--tbg:var(--wabsent);background:var(--wabsent);border-color:var(--wabsent);color:#fff}
 @keyframes wPop{from{transform:scale(.85)}40%{transform:scale(1.08)}to{transform:scale(1)}}
-@keyframes wFlip{0%{transform:rotateX(0)}50%{transform:rotateX(-90deg)}100%{transform:rotateX(0)}}
+@keyframes wFlip{0%{transform:rotateX(0deg);background:var(--card);border-color:var(--border);color:var(--fg)}49.9%{transform:rotateX(-90deg);background:var(--card);border-color:var(--border);color:var(--fg)}50%{transform:rotateX(-90deg);background:var(--tbg);border-color:var(--tbg);color:#fff}100%{transform:rotateX(0deg);background:var(--tbg);border-color:var(--tbg);color:#fff}}
 @keyframes wShake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-8px)}40%,60%{transform:translateX(8px)}}
 @keyframes wBounce{0%,20%{transform:translateY(0)}40%{transform:translateY(-22px)}50%{transform:translateY(4px)}60%{transform:translateY(-10px)}80%{transform:translateY(2px)}100%{transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.wrow[data-shake="1"],.wrow[data-win="1"] .wtile,.wtile[data-pop="1"],.wtile[data-flip="1"]{animation:none}}
 .wkeyboard{display:flex;flex-direction:column;gap:8px;margin:0 0 8px}
 .wkrow{display:flex;gap:6px;justify-content:center}
-.wkey{flex:1;max-width:42px;height:52px;display:flex;align-items:center;justify-content:center;border:none;border-radius:5px;background:var(--inset);color:var(--fg);font:600 13px/1 "JetBrains Mono",monospace;text-transform:uppercase;cursor:pointer;user-select:none}
+.wkey{flex:1;max-width:42px;height:52px;display:flex;align-items:center;justify-content:center;border:none;border-radius:5px;background:var(--inset);color:var(--fg);font:600 13.5px/1 "Space Grotesk",ui-sans-serif,system-ui,sans-serif;text-transform:uppercase;cursor:pointer;user-select:none}
 .wkey.wide{max-width:64px;font-size:11px}
 .wkey:hover{filter:brightness(0.95)}
 .wkey[data-state="correct"]{background:var(--wcorrect);color:#fff}
@@ -722,15 +722,17 @@ let answer=WORDLE_ANSWERS[Math.floor(Math.random()*WORDLE_ANSWERS.length)];
 let guesses=[],cur="",done=false,won=false,msg="",shakeN=0,keyState={},revealRow=-1,popIdx=-1;
 function shareText(){const chron=guesses.map(g=>wordleScore(g,answer).map(s=>s==="correct"?"🟩":s==="present"?"🟨":"⬜").join("")).join("\n");const base=location.href.split("#")[0];return `Wordle Unlimited ${won?guesses.length:"X"}/6\n${chron}\n${base}#/wordle`}
 function applyKeyState(g){const sc=wordleScore(g,answer);const rank={absent:0,present:1,correct:2};for(let i=0;i<5;i++){const l=g[i],s=sc[i];if(!keyState[l]||rank[s]>rank[keyState[l]])keyState[l]=s}}
+const WFLIP_STAGGER=300,WFLIP_DUR=650;
 function submit(){if(done)return;
 if(cur.length<5){msg="Not enough letters";shakeN++;render();return}
 if(!WORDLE_VALID_SET.has(cur)){msg="Not in word list";shakeN++;render();return}
-msg="";guesses.push(cur);applyKeyState(cur);revealRow=guesses.length-1;
-if(cur===answer){done=true;won=true;msg=WORDLE_WINMSG[guesses.length]||"You got it!";
+msg="";const g=cur;guesses.push(g);revealRow=guesses.length-1;cur="";render();
+setTimeout(()=>{applyKeyState(g);
+if(g===answer){done=true;won=true;msg=WORDLE_WINMSG[guesses.length]||"You got it!";
 const s=wrs();s.played++;s.wins++;s.streak++;s.best=Math.max(s.best,s.streak);s.dist[guesses.length-1]++;wws(s)}
 else if(guesses.length>=6){done=true;won=false;msg=`The word was ${answer.toUpperCase()}`;
 const s=wrs();s.played++;s.streak=0;wws(s)}
-cur="";render()}
+render()},4*WFLIP_STAGGER+WFLIP_DUR)}
 function key(k){if(done)return;
 if(k==="Enter"){submit();return}
 if(k==="Back"){cur=cur.slice(0,-1);popIdx=-1;render();return}
@@ -751,7 +753,7 @@ if(r<guesses.length){letters=guesses[r];state=wordleScore(letters,answer)}
 else if(isCur)letters=cur;
 else letters="";
 const tiles=Array.from({length:5}).map((_,i)=>{const l=(letters||"")[i]||"";const st=state?state[i]:"";
-const flip=st&&r===revealRow?` data-flip="1" style="animation-delay:${i*220}ms"`:"";
+const flip=st&&r===revealRow?` data-flip="1" style="animation-delay:${i*300}ms"`:"";
 const pop=isCur&&i===popIdx?` data-pop="1"`:"";
 return `<div class="wtile" ${st?`data-state="${st}"`:l?`data-has="1"`:""}${flip}${pop}>${esc(l)}</div>`}).join("");
 rows.push(`<div class="wrow" ${isCur&&shakeN?`data-shake="1"`:""} ${done&&won&&r===guesses.length-1?`data-win="1"`:""}>${tiles}</div>`)}
